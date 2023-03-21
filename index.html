@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="loja.css">
+
+</head>
+
+ <style>
+
+   
+  
+   </style>
+
+<header class="cabeçalho">
+
+    <nav class="conteudo-cabeçalho">
+        
+        <img class="imgcabe" src="imglog/logo.png" alt="">
+        <div class="nav">
+            <a class="navitem" href="">Home</a>
+            <a class="navitem" href=""> Menu</a>
+            <a class="navitem" href="">About</a>
+            <a class="navitem2" href="">Contacts</a>
+
+        </div>
+
+       
+    </nav>
+
+
+  
+    <button class="sacola" onclick="sacola()">
+       Sacola
+    </button>
+
+
+
+</header>
+
+
+<body class="tudo">
+
+
+ 
+    <div class="modal" id="m">
+ 
+
+        <header class="cabemenu"> 
+           
+            <button class="saircar" onclick="sair()">X</button>
+            <h2 class="titulocar">sacola</h2>
+            <button class="limparcar" onclick="limpar()">Limpar</button>
+        </header>
+
+     <div class="titulopedido">
+
+        <img class="imgcarrinho" src="imglog/carrinho.png" alt="">
+        <h1 class="pedidos">  Seus pedidos:</h1>
+
+     </div>
+        <div class="carrinho" id="carrinho"> 
+        
+        
+            
+        </div>
+       
+        <div class="finalizar">
+          
+            <div class="total">  Total:   <div id="res" class = "total"></div > </div>
+            
+         
+            <button class="finalizarcompra" onclick="finalizar()"> Finalizar</button>
+        </div>
+    </div>
+
+    
+   
+
+    <main>
+
+      <!--   ///////////////////////////////// Meio LANDING PAGE <!-- -->
+
+
+        <section class="landpage">
+
+        <div class="texto-principal">
+        <h1 class="best"> Tasty <span style="color: rgb(0, 0, 0);">new</span> </h1> 
+        <h2 class="texto-principal-titulo">  BURGUER </h1>
+        <p class="texto-principal-paragrafo">Lorem ipsum dolor sit amet consectetur adipisicing eli <br> Lorem ipsum dolor, sit amet consectetur  <br>Blanditiis dolores modi omnis totam.   </p>
+        <button onclick="comprar()" id="prod" class="texto-principal-botao">comprar</button>
+     
+
+            </div>
+          
+          <div class="fundoimg">
+            <img class="imglanche" src="imglog/l5.png" alt="">
+        </div>
+
+
+          </section>
+
+     <!--    ////////////////////////////// DIV DOS PRODUTOS -->
+        <span > <h1 class=" titulolanches"> Burguers</h1></span>
+        <div class="produtos" id="item">   </div>
+
+    </main>
+
+   <!--  ///////////////////////////////// RODAPE  -->
+    
+
+    <footer class="rodape">
+  
+        <a class="itenrodape" href=''> <img class="imginsta" src="imglog/logoinsta.png" alt=""></a>
+        <a class="itenrodape" href= ''> <img class="imgface" src="imglog/logoface.png" alt=""></a>
+        <a class="itenrodape" href=''> <img class="imgtw" src="imglanche/tw.png" alt=""></a>
+
+    
+    </footer>
+
+  <!--    /////////////////////////   RODAPE  -->
+
+  <div id="fundomodalpr" class="fundomodalpr"></div>
+
+  <div id="Modalnotificaçao" class="notificaçao"></div>
+
+
+ 
+  <!--    /////////////////////////   Modalnotificaçao  -->
+
+
+
+</body>
+
+ <script>
+
+const produto = [
+    
+{
+            Id: 0,
+            nome: '  onion Brás  ',
+            img: 'imglanche/m1.jpeg',
+            preço: 31,
+            descriçao: 'Pão,hambúrguer 100g,alface,tomate, maionese, milho, e aneis de cebola. ',
+            quantidade: 0
+        },
+        {
+            Id: 1,
+            img: 'imglanche/m4.jpeg',
+            nome: 'Brasa kids',
+            descriçao: ' Pão,hambúrguer 100g,alface,tomate, bacon e maionese colorida.',
+            preço: 40.00,
+            quantidade: 0
+        },
+        {
+            Id: 2,
+            img: 'imglanche/m3.jpeg',
+            nome: ' Brasapiry',
+            descriçao: ' Pão,hambúrguer 100g,bacon,catupiry, e alho frito, cebola e tomate.',
+            preço: 35.00,
+            quantidade: 0
+        },
+        {
+            Id: 3,
+            img: 'imglanche/m5.jpeg',
+            nome:  'Brasão',
+            descriçao: ' Pão, frango 100g, maionese verde,queijo,cebola,tomate e molho.',
+            preço: 28.00,
+            quantidade: 0,
+        }, {
+
+            Id: 4,
+            nome: 'Smash Brasa',
+            img: 'imglanche/m2.jpeg',
+            descriçao: ' Pão, dois hambúrgueres 180g, geleia de pimenta artesanal, bacon, tomate e alface ',
+            preço: 24.00,
+            quantidade: 0
+        },
+        {
+            Id: 5,
+            img: 'imglanche/m7.jpeg',
+            nome: 'Brasa Barbecue',
+            preço: 28.00,
+            descriçao: 'Pão,hambúrguer de 100g, bacon, molho,barbecue,cheddar, cebola e tomate.',
+            quantidade: 0
+        },
+        {
+            Id: 6,
+            img: 'imglanche/m6.jpeg',
+            nome: 'Brasa Ribs',
+            preço: 26.00,
+            descriçao: 'Pão,hambúrguer de costela 200g, anel de cebola,molho de lemmon pepper com queijo. ',
+            quantidade: 0
+        },
+        {
+            Id: 7,
+            img: 'imglanche/m8.jpeg',
+            nome: 'Braseiro',
+            descriçao: 'Pão,hambúrguer 100g ,nacho,molho de pimenta, queijo, tomate e cebola.',
+            preço: 26.00,
+            quantidade: 0,
+        },
+       
+
+
+      
+
+    ]
+
+
+ 
+  
+
+
+
+    function inicializar() {
+
+        var containerpr = document.querySelector('#item')
+        containerpr = produto.map(function (elemento) {
+          
+            containerpr.innerHTML +=
+
+            `<div class="produtosP"> 
+
+   <h1 class = "preçopr">${elemento.preço.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</h1>
+   <img class = "imgpr" src ="${elemento.img}"  />
+   <span  class = "nomepr">${elemento.nome}</span>
+   <p class = 'descriçaopr'> ${elemento.descriçao}</p>
+ 
+  <button class ="botaosacola" key="${elemento.Id}"> Comprar </button>
+    
+
+  `
+
+
+
+
+        }
+        )
+    }
+
+    
+
+    
+    
+    
+   
+    
+
+
+
+
+    function atualizarcarrinho() {
+ 
+    
+        
+
+
+
+
+
+        var modal = document.querySelector('#carrinho')
+
+        modal.innerHTML = ''
+
+       modal = produto.map(function (elemento) {
+         
+            r = elemento.preço * elemento.quantidade
+          
+          
+            if(elemento.quantidade > 0  ){
+             
+               
+
+                modal.innerHTML += `<div id ="ir"class = "itens" > 
+                                   <img class="imgcar" src="${elemento.img}"> </img>
+                                   <div class = "tudomenu">
+                                 
+                                    <div class = "elementonome"> ${elemento.nome}  </div>
+
+                                    <div class = "elementopreço" > 
+                                       
+                                     ${ r.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                   
+                                   </div> 
+
+                                     
+                                  <div class = "alterar">
+                                    <button type=submit class ="b1" key="${elemento.Id}"> - </button>
+                                     <span class = qtdmenu> ${elemento.quantidade} </span>
+                                    <button class ="b2" key="${elemento.Id}"> +</button>
+                                    </div>
+                                   </div>
+                                  
+                                
+                                                                   
+                                       `
+                              
+
+                var link = document.getElementsByClassName('b2')
+             
+                for (var i = 0; i < link.length; i++) {
+                    link[i].addEventListener('click', function () {
+                   
+                     
+                       
+
+
+                        var key = this.getAttribute('key')
+                        produto[key].quantidade++
+                         total += produto[key].preço 
+                        res.innerHTML = `${  total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })  }`
+
+
+
+
+                        atualizarcarrinho()
+                    })
+                }
+
+                
+
+                var link = document.getElementsByClassName('b1')
+        
+                for (var i = 0; i < link.length; i++) {
+                    link[i].addEventListener('click', function () {
+
+
+                       
+                        var key = this.getAttribute('key')
+                        produto[key].quantidade--
+                        total -= produto[key].preço
+                        res.innerHTML = `${  total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })  }`
+                      
+                      
+                       
+
+
+                        atualizarcarrinho()
+                    })
+                }
+
+            }
+            
+})}
+          
+            
+
+        
+    
+    
+    
+        
+   
+
+    
+
+      
+    
+
+
+
+
+
+
+
+              
+
+
+inicializar()
+
+
+                
+
+
+         
+    
+
+  
+ 
+  
+
+  
+
+
+//  ADICIONAR AO CARRINHO
+
+var link = document.getElementsByClassName('botaosacola')
+total = 0
+
+
+for (var i = 0; i < link.length; i++) {
+link[i].addEventListener('click', function () {
+         var key = this.getAttribute('key')
+         total += produto[key].preço
+total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+res.innerHTML = `${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }`
+
+        
+modalnot = document.getElementById('Modalnotificaçao')
+modalnot.style.display ='block'
+
+fundom = document.getElementById('fundomodalpr')
+fundom.style.display ='block'
+
+
+modalnot.innerHTML = ` <div class = 'itensmp'>   <h1> ${produto[key].nome}</h1> <p>${produto[key].descriçao}</p> <img class = "imgpr" src ="${produto[key].img}" /> <span class ="preçomodal" >${produto[key].preço.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> <span class = "botoesmodal">  <button class = "botaomodal"> Adicionar ao carrinho</button> <button onclick = "saimodalpr()" class = "sairmodalpr" > cancelar</button> </span></div>`   
+var bm = document.getElementsByClassName('botaomodal')
+
+
+for(var m = 0 ;m < bm.length; m++){
+    bm[m].addEventListener('click', function () {
+        produto[key].quantidade++
+
+        
+        modalnot = document.getElementById('Modalnotificaçao')
+modalnot.style.display ='none'
+
+fundom = document.getElementById('fundomodalpr')
+fundom.style.display ='none'
+
+      
+
+        modal = document.querySelector('#m')
+        modal.style.display = 'block'
+
+        atualizarcarrinho()
+    })
+ }
+
+ 
+
+
+ 
+
+
+            atualizarcarrinho()
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+ 
+
+  
+
+
+
+
+
+
+
+
+
+
+
+function saimodalpr(){
+
+    modalnot = document.getElementById('Modalnotificaçao')
+modalnot.style.display ='none'
+
+fundom = document.getElementById('fundomodalpr')
+fundom.style.display ='none'
+}
+
+
+
+function limpar() {
+modal = produto.map(function (elemento) {
+elemento.quantidade = null
+carrinho.innerHTML = ''
+total = null
+res.innerHTML = ''
+modal = document.querySelector('#m')
+modal.style.display = 'none'
+
+})}
+
+function sacola(){
+        
+modal = document.querySelector('#m')
+modal.style.display = 'block'
+ }
+
+function sair() {
+modal = document.querySelector('#m')
+modal.style.display = 'none'
+    }
+
+function  finalizar(){
+modal = document.querySelector('#m')
+modal.style.display = 'none'
+   }
+
+
+</script>
+
+</html>
+
